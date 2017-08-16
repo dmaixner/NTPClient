@@ -25,9 +25,9 @@ The views and conclusions contained in the software and documentation are those 
 authors and should not be interpreted as representing official policies, either expressed
 or implied, of German Martin
 */
-// 
-// 
-// 
+//
+//
+//
 
 #ifdef ARDUINO_ARCH_ESP8266
 
@@ -270,11 +270,11 @@ String NTPClient::getDateStr(time_t moment) {
 	//if ((timeStatus() != timeNotSet) || (moment != 0)) {
 		String timeStr = "";
 
-		timeStr += printDigits(day(moment));
-		timeStr += "/";
-		timeStr += printDigits(month(moment));
-		timeStr += "/";
 		timeStr += String(year(moment));
+		timeStr += "-";
+		timeStr += printDigits(month(moment));
+		timeStr += "-";
+		timeStr += printDigits(day(moment));
 
 		return timeStr;
 	//}
@@ -288,9 +288,9 @@ String NTPClient::getDateStr() {
 String NTPClient::getTimeDateString(time_t moment) {
 	//if ((timeStatus() != timeNotSet) || (moment != 0)) {
 		String timeStr = "";
-		timeStr += getTimeStr(moment);
-		timeStr += " ";
 		timeStr += getDateStr(moment);
+		timeStr += "T";
+		timeStr += getTimeStr(moment);
 
 		return timeStr;
 	//}
@@ -343,7 +343,7 @@ time_t NTPClient::getFirstSync()
 			_firstSync = now() - getUptime();
 		}
 	}
-	
+
 	return _firstSync;
 }
 
@@ -352,7 +352,7 @@ String NTPClient::getUptimeString() {
 	uint8 hours;
 	uint8 minutes;
 	uint8 seconds;
-	
+
 	long uptime = getUptime();
 
 	seconds = uptime % SECS_PER_MIN;
@@ -363,7 +363,7 @@ String NTPClient::getUptimeString() {
 	uptime -= hours * SECS_PER_HOUR;
 	days = uptime / SECS_PER_DAY;
 
-	String uptimeStr = ""; 
+	String uptimeStr = "";
 	char buffer[20];
 	sprintf(buffer, "%d days %02d:%02d:%02d", days, hours, minutes, seconds);
 	uptimeStr += buffer;
