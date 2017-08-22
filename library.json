@@ -16,7 +16,7 @@
     "url": "https://github.com/gmag11/NtpClient"
 },
     "dependencies": {
-        "Time": "PaulStoffregen/Time"
+        "Time": "https://github.com/dmaixner/Time/archive/master.zip"
     }
 }
 
